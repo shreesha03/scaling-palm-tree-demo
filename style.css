@@ -1,4 +1,17 @@
-img{
-    width: 300px;
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+#image {
+    position: absolute;
+    width: 100px; /* Set your initial image dimensions */
     height: auto;
+    transition: width 0.1s ease-out, height 0.1s ease-out; /* Smooth transition for size change */
 }
