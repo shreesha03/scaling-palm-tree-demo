@@ -3,19 +3,21 @@ document.addEventListener('mousemove', function(e) {
     var image = document.getElementById('image');
 
     // Calculate the cursor position relative to the center of the image
-    var offsetX = e.clientX - image.offsetLeft - image.width / 2;
+    var offsetX = e.screenX;
 
-    // Calculate the new width based on cursor position (proportional increase)
-    var newWidth = Math.abs(offsetX) + 100; // Set a base width (e.g., 100px)
+    // Set the image width based on cursor position
+    image.style.width = 1.9*offsetX + 'px';
 
-    // Set the image size based on cursor position
-    image.style.width = newWidth + 'px';
-    image.style.height = newWidth + 'px'; // Maintain proportional increase
+    // Set the image height to 'auto'
+    image.style.height = 'auto';
 });
 
-// Reset image size on mouse leave
-document.addEventListener('mouseleave', function() {
-    var image = document.getElementById('image');
-    image.style.width = '100px'; // Set your initial width
-    image.style.height = '100px'; // Set your initial height
+
+document.addEventListener('mousemove', function(e){
+    var bodyElement = document.querySelector('body');
+    
+    // Normalize the screenX value to fit within the RGB color range (0-255)
+    var normalizedColorValue = Math.round((e.screenX / window.innerWidth) * 999999);
+
+    bodyElement.style.backgroundColor = '#' + normalizedColorValue;
 });
