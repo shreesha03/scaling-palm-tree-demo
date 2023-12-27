@@ -1,23 +1,45 @@
-document.addEventListener('mousemove', function(e) {
-    // Get the image element
+document.addEventListener('mousemove', function(e){
+
+    //getting image
     var image = document.getElementById('image');
 
-    // Calculate the cursor position relative to the center of the image
-    var offsetX = e.screenX;
+    //getting cursor pointer value
+    var CursorValue = e.screenX;
 
-    // Set the image width based on cursor position
-    image.style.width = 1.9*offsetX + 'px';
-
-    // Set the image height to 'auto'
+    image.style.width = 2.15*CursorValue + 'px';
     image.style.height = 'auto';
-});
-
+})
 
 document.addEventListener('mousemove', function(e){
-    var bodyElement = document.querySelector('body');
     
-    // Normalize the screenX value to fit within the RGB color range (0-255)
-    var normalizedColorValue = Math.round((e.screenX / window.innerWidth) * 999999);
+    var button = document.getElementsByClassName('epileptic-button')[0];
+    buttontext = button.innerHTML;
 
-    bodyElement.style.backgroundColor = '#' + normalizedColorValue;
+    if(buttontext == "Epileptic?"){
+        var bodyElement = document.querySelector('body');
+
+        //normalize colors within HEX range
+        var backgroundhexcolor = Math.round((e.screenX/(window.innerWidth))*999999);
+
+        bodyElement.style.backgroundColor = '#' + backgroundhexcolor;
+    }
 });
+
+function togglebutton(){
+
+    var button = document.getElementsByClassName('epileptic-button')[0]
+
+    if(button)
+    {
+        var buttontext = button.innerHTML;
+
+        if (buttontext === "Epileptic?"){
+            button.innerHTML = "Not Epileptic?";
+            button.style.backgroundColor = "Green";
+        }
+        else if(buttontext === "Not Epileptic?"){
+            button.innerHTML = "Epileptic?";
+            button.style.backgroundColor = "Red";
+        }
+    }
+}
